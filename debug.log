@@ -1,0 +1,38 @@
+[1027/113917.963:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/114848.818:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/123757.128:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/123851.714:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/131340.946:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/140129.133:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/141047.166:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/152212.246:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/153948.010:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/155513.993:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/160147.551:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/160946.887:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/161044.604:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/161433.313:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/163759.535:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/171208.549:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/181415.274:ERROR:crash_report_database_win.cc(457)] unexpected header
+[1027/181506.222:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/181532.413:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/181722.070:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/181737.514:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1027/183030.558:ERROR:crash_report_database_win.cc(457)] unexpected header
+[1027/191119.311:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1027/191119.312:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1027/191119.313:ERROR:exception_snapshot_win.cc(99)] thread ID 22636 not found in process
+[1028/132432.056:ERROR:crash_report_database_win.cc(457)] unexpected header
+[1028/134515.762:ERROR:crash_report_database_win.cc(457)] unexpected header
+[1028/135351.170:ERROR:crash_report_database_win.cc(457)] unexpected header
