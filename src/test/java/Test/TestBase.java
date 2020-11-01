@@ -33,7 +33,7 @@ public class TestBase {
     String SITE_URL = "https://stage.estate.mts.ru/";
     WebDriver driver;
     ChromeOptions options;
-    boolean uiModeHeadless = false;
+    boolean uiModeHeadless = true;
 
     @BeforeEach //перед каждым тестом
     public void start() {
@@ -44,11 +44,11 @@ public class TestBase {
         driver = new ChromeDriver(options);
     }
 
-//	@AfterEach //после каждого теста
-//	public void finish() {
-//		driver.close();
-//		driver.quit();
-//	}
+	@AfterEach //после каждого теста
+	public void finish() {
+		driver.close();
+		driver.quit();
+	}
 
     @Attachment(value = "Failed test screenshot")
     public byte[] attachScreenshot() {
@@ -67,38 +67,6 @@ public class TestBase {
 
     }
     // форма пустышка для теста----------------------------------------------------------------
-
-    //образец шагов для теста, отображение в аллюр каждого шага и/или вводимых данных
-    @Step(value = "Fill in login with {0}")
-    public void fillInLogin(String login) {
-        driver.findElement(By.id("LoginForm_username")).sendKeys(login);
-    }
-
-    @Step(value = "Fill in password with {0}")
-    public void fillInPassword(String password) {
-        driver.findElement(By.id("LoginForm_password")).sendKeys(password);
-    }
-
-    @Step(value = "Click button Login")
-    public void loginButtonClick() {
-        driver.findElement(By.id("LoginForm_save")).click();
-    }
-
-    @Step(value = "Choose element")
-    public void chooseElement() {
-        driver.findElement(By.linkText("ОБРАЗЕЦ")).click();
-    }
-
-    @Step(value = "Login was successful")
-    public void isLoginSuccessful() {
-        assertTrue(driver.findElement(By.linkText("ВИДИМ ЛИ ЭЛЕМЕНТ")).isDisplayed());
-    }
-
-    @Step(value = "Login was unsuccessful")
-    public void isLoginUnsuccessful() {
-        assertFalse(driver.findElements(By.linkText("ЕСЛИ ЭЛЕМЕНТ НЕВИДИМ")).isEmpty());
-    }
-//образец шагов для теста, отображение в аллюр каждого шага и вводимых данных
 
     @Epic("TESTING FOR https://stage.estate.mts.ru/ tasks")
     @Feature(value = "Регистрация пользователя")
@@ -249,19 +217,93 @@ public class TestBase {
     @Story(value = "История Проверка успешной авторизации")
 
     @Test
-    public void LoginExit() throws InterruptedException {
-        options.setHeadless(uiModeHeadless);// переключение режима интерфейса
-        driver.get(SITE_URL);// заходим на страницу
-        driver.manage().window().maximize();// открывает страницу на весь экран
-        driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/div[3]/div/button")).click();// находим элемент по кспасу. click нажимаем на него
+    //Проверка возможности успешной авторизации
+    public void LoginSuccessfulAuthorization() throws InterruptedException {
+        // зайти на страницу
+        driver.get(SITE_URL);
+        // открывает страницу на весь экран
+        driver.manage().window().maximize();
+        // нажать кнопку регистрация
+        driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/div[3]/div/button")).click();
+        //получение страницы авторизации
         driver.get("https://auth.estate.mts.ru/auth/realms/mts-external/protocol/openid-connect/auth?client_id=estate-ext&redirect_uri=https%3A%2F%2Festate.mts.ru%2Fapi%2Fv1%2Fcallback&response_type=code&scope=username&state=abcf74b7-6e40-4d55-9a8e-997406c69670");
-        driver.findElement(By.id("username")).sendKeys(userMail);// вводит инфо в поле логин
-        driver.findElement(By.id("password")).sendKeys(userPassword);// вводит инфо в поле пароль
-        driver.findElement(By.id("kc-login")).click();// нажать кнопку вход
-        driver.findElement(By.xpath("//*[@id=\"app-header\"]/div[1]/div/div[3]/div/div[3]/span")).click();// клик по кнопке личный кабинет(иконка профиля)
+        // заполнить поле логин
+        driver.findElement(By.id("username")).sendKeys(userMail);
+        // заполнить поле пароль
+        driver.findElement(By.id("password")).sendKeys(userPassword);
+        // нажать кнопку вход
+        driver.findElement(By.id("kc-login")).click();
+        // клик по кнопке личный кабинет(иконка профиля)
+        driver.findElement(By.xpath("//*[@id=\"app-header\"]/div[1]/div/div[3]/div/div[3]/span")).click();
+        //пауза сек
         Thread.sleep(1000);
-        driver.findElement(By.xpath("/html/body/ul/span/li")).click();// клик по "выход" в списке
-        driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div/div/div[3]/div/button[1]")).click();// клик по "отмена" в модальном окне "вы действительно хотите выйти"
+        // клик по "выход" в списке
+        driver.findElement(By.xpath("/html/body/ul/span/li")).click();
+        // клик по "отмена" в модальном окне "вы действительно хотите выйти"
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div/div/div[3]/div/button[1]")).click();
     }
 
+    //образец шагов для теста, отображение в аллюр каждого шага и/или вводимых данных
+    @Step(value = "Get URL")
+    public void getUrl(String SITE_URL) {
+        driver.get(SITE_URL);
+    }
+
+    @Step(value = "Press Registration Button")
+    public void pressRegistrationButton() {
+        driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/div[3]/div/button")).click();
+    }
+
+    @Step(value = "Get URL registration page")
+    public void getURLRegistrationPage() {
+        driver.get("https://auth.estate.mts.ru/auth/realms/mts-external/protocol/openid-connect/auth?client_id=estate-ext&redirect_uri=https%3A%2F%2Festate.mts.ru%2Fapi%2Fv1%2Fcallback&response_type=code&scope=username&state=abcf74b7-6e40-4d55-9a8e-997406c69670");
+    }
+
+    @Step(value = "Fill in login")
+    public void fillInLogin(String userMail) {
+        driver.findElement(By.id("username")).sendKeys(userMail);
+    }
+
+    @Step(value = "Fill in password")
+    public void fillInPassword(String userPassword) {
+        driver.findElement(By.id("password")).sendKeys(userPassword);
+    }
+
+    @Step(value = "Press button enter")
+    public void pressButtonEnter() {
+        driver.findElement(By.id("kc-login")).click();
+    }
+
+    @Step(value = "Press profile icon")
+    public void pressProfileIcon() {
+        driver.findElement(By.xpath("//*[@id=\"app-header\"]/div[1]/div/div[3]/div/div[3]/span")).click();
+    }
+
+    @Step(value = "Pressexit in drop-down menu")
+    public void pressExitInDropDownMenu() {
+        driver.findElement(By.xpath("/html/body/ul/span/li")).click();
+    }
+
+    @Step(value = "Press cancel in drop-down menu")
+    public void pressCancelInDropDownMenu() {
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div/div/div[3]/div/button[1]")).click();
+    }
+
+//образец шагов для теста, отображение в аллюр каждого шага и вводимых данных
+
+    @Test
+    //Проверка успешной авторизации c отображением шагов теста в аллюр
+    public void LoginSuccessfulAuthorization2() throws InterruptedException {
+
+        getUrl(SITE_URL);
+        pressRegistrationButton();
+        getURLRegistrationPage();
+        fillInLogin(userMail);
+        fillInPassword(userPassword);
+        pressButtonEnter();
+        Thread.sleep(2000);
+        pressProfileIcon();
+        pressExitInDropDownMenu();
+        pressCancelInDropDownMenu();
+    }
 }
