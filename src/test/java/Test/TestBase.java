@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestBase {
-    String userMail = "1TEST@gmail.com";
+    String userMail = "7TEST@gmail.com";
     String userPassword = "mavrodi";
     String userWrongPassword = "1001001";
     String userInn = "7707083893";
@@ -144,7 +144,7 @@ public class TestBase {
         //нажать кнопку зарегистрироваться
         driver.findElement(By.xpath("//*[@id=\"kc-form-buttons\"]/input")).click();
         // пауза сек
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         //проверка видимости элемента иконка профиля, статус виден
         assertTrue(driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/div[3]/div/div[3]/span/div/img")).isDisplayed());
     }
@@ -173,13 +173,13 @@ public class TestBase {
         // нажать кнопку вход
         driver.findElement(By.id("kc-login")).click();
         // пауза сек
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         //клик по иконке пользователя
         driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/div[3]/div/div[3]/span/div/img")).click();
         //клик выпадающее меню мой профиль
         driver.findElement(By.xpath("//a[@href='/profile/user']")).click();
         // пауза сек
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         //клик по полю фамилия, очистка данных, ввод данных
         driver.findElement(By.xpath("//input[@placeholder='Иванов']")).clear();
         driver.findElement(By.xpath("//input[@placeholder='Иванов']")).sendKeys(userSurname);
@@ -207,33 +207,38 @@ public class TestBase {
         driver.findElement(By.xpath("//button[@class='el-button el-button--primary el-button--small']")).click();
         //клик по иконке пользователя
         driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div/div[3]/div/div[3]/span/div/img")).click();
+        // пауза сек
+        Thread.sleep(1000);
         //клик выпадающее меню моя организация
-        driver.findElement(By.xpath("")).click();
+        driver.findElement(By.xpath("//div/a[2][@href='/profile/organization']")).click();
+        // пауза сек
+        Thread.sleep(1000);
         //клик по полю инн, ввод инфо
-        driver.findElement(By.xpath("")).sendKeys(userInn);
+        driver.findElement(By.xpath("//input[@placeholder='000000000000']")).sendKeys(userInn);
         //клик по полю кпп, ввод инфо
-        driver.findElement(By.xpath("")).sendKeys(userKpp);
+        driver.findElement(By.xpath("//input[@placeholder='000000000']")).sendKeys(userKpp);
         //клик по кнопке загрузить данные
-        driver.findElement(By.xpath("")).click();
+        driver.findElement(By.xpath("//button[@data-v-90f1339e]")).click();
+        // пауза сек
+        Thread.sleep(3000);
+        //клик по полю телефон, ввод данных
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/div/main/main/div[2]/div[1]/div[1]/div[2]/form/div/div[1]/div/div/div[1]/input")).sendKeys(userTelNumber);
+        //клик по полю мейл, ввод данных
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/div/main/main/div[2]/div[1]/div[1]/div[2]/form/div/div[2]/div/div/div[1]/input")).sendKeys(userMail);
+        //клик по полю бик,ввод данных
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/div/main/main/div[2]/div[1]/div[1]/div[1]/form/div/div[5]/div/div/div[1]/input")).sendKeys(userBik);
+        //клик по полю юридический адрес/офис, ввод данных
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/div/main/main/div[2]/div[1]/div[1]/div[3]/form/div/div[6]/div/div/div[1]/input")).sendKeys(officeNumber);
+        //клик по полю фактический адрес/офис, ввод данных
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/div/main/main/div[2]/div[1]/div[1]/div[4]/form/div/div[6]/div/div/div[1]/input")).sendKeys(officeNumber);
+        //чекбокс "Нажимая сохранить"
+        driver.findElement(By.xpath("//span[@class=\"el-checkbox__inner\"]")).click();
+        //нажать кнопку сохранить данные
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/div/main/main/div[2]/div[1]/button")).click();
         // пауза сек
         Thread.sleep(2000);
-        //клик по полю телефон, ввод данных
-        driver.findElement(By.xpath("")).sendKeys(userTelNumber);
-        //клик по полю мейл, ввод данных
-        driver.findElement(By.xpath("")).sendKeys(userMail);
-        //клик по полю бик,ввод данных
-        driver.findElement(By.xpath("")).sendKeys(userBik);
-        //клик по полю юридический адрес/офис, ввод данных
-        driver.findElement(By.xpath("")).sendKeys(officeNumber);
-        //клик по полю фактический адрес/офис, ввод данных
-        driver.findElement(By.xpath("")).sendKeys(officeNumber);
-        //чекбокс "Нажимая сохранить"
-        driver.findElement(By.xpath("")).click();
-        //нажать кнопку сохранить данные
-        driver.findElement(By.xpath("")).click();
-
-
-        //перехват данных текста алерта??
+        //поиск уникального элемента для проверки сохранения данных
+        driver.findElement(By.xpath("//span[contains(text(), 'Редактировать')]"));
 
     }
 
