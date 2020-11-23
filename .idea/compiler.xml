@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="AutotestsEstate" />
         <module name="allureReport" />
+        <module name="AutotestsEstateFromeHome" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15" />

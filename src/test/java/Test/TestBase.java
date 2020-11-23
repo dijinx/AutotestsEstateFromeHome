@@ -1,4 +1,4 @@
-package Test;// Java -jar Jenkins.war терминал из директории с файлом страница http://localhost:8080
+package Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.*;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestBase {
-    String userMail = "7TEST@gmail.com";
+    String userMail = "13TEST@gmail.com";
     String userPassword = "mavrodi";
     String userWrongPassword = "1001001";
     String userInn = "7707083893";
@@ -29,11 +29,11 @@ public class TestBase {
     String userBirth = "27102004";
     String userTelNumber = "0123456789";
     String userAddress = "Московская область, г. Москва, ул. Ковальчука, д. 12, кв. 1";
-    String cadastralNumber = "";
+    String cadastralNumber = "77:09:0003014:1042";
     String SITE_URL = "https://stage.estate.mts.ru/";
     WebDriver driver;
     ChromeOptions options;
-    boolean uiModeHeadless = true;
+    boolean uiModeHeadless = false;
 
     @BeforeEach //перед каждым тестом
     public void start() {
@@ -44,14 +44,14 @@ public class TestBase {
         driver = new ChromeDriver(options);
     }
 
-	@AfterEach //после каждого теста
-	public void finish() {
-		driver.close();
-		driver.quit();
-	}
+//	@AfterEach //после каждого теста
+//	public void finish() {
+//		driver.close();
+//		driver.quit();
+//	}
 
-    @Attachment(value = "Failed test screenshot")
-    public byte[] attachScreenshot() {
+    @Attachment(value = "Page screenshot", type = "image/png")
+    protected byte[] saveAllureScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
@@ -279,7 +279,7 @@ public class TestBase {
         driver.findElement(By.xpath("//*[@id=\"app-header\"]/div[1]/div/div[3]/div/div[3]/span")).click();
     }
 
-    @Step(value = "Pressexit in drop-down menu")
+    @Step(value = "Press exit in drop-down menu")
     public void pressExitInDropDownMenu() {
         driver.findElement(By.xpath("/html/body/ul/span/li")).click();
     }
@@ -296,14 +296,25 @@ public class TestBase {
     public void LoginSuccessfulAuthorization2() throws InterruptedException {
 
         getUrl(SITE_URL);
+        saveAllureScreenshot();
         pressRegistrationButton();
+        saveAllureScreenshot();
         getURLRegistrationPage();
+        saveAllureScreenshot();
         fillInLogin(userMail);
+        saveAllureScreenshot();
         fillInPassword(userPassword);
+        saveAllureScreenshot();
         pressButtonEnter();
+        saveAllureScreenshot();
         Thread.sleep(2000);
+        saveAllureScreenshot();
         pressProfileIcon();
+        saveAllureScreenshot();
         pressExitInDropDownMenu();
+        saveAllureScreenshot();
         pressCancelInDropDownMenu();
+        saveAllureScreenshot();
+
     }
 }
